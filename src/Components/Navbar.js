@@ -7,9 +7,23 @@ import profileimg from "../image/fluent_premium-person-20-regular.svg"
 import userimg from "../image/usericon.svg"
 import userbtmimg from "../image/Arrow 1.svg"
 
+import globalcontext from "../context/globalcontext";
+import { useContext } from "react";
+
 const Navbar=()=>{
+
+let {setHarryData,setSherlockdata,bookinp,setBookinp,setFilter} = useContext(globalcontext)
+// let {filter,setFilter} = useContext(globalcontext)
+function findbooks(){
+  setHarryData([]);
+  setSherlockdata([])
+  console.log("finsihed");
+  setFilter(bookinp);
+}
+
     return (
        <div className="navbar">
+
          <div className="nav1">
             <img src={Logoimg} alt="Logo"/>
             <p>
@@ -19,9 +33,9 @@ const Navbar=()=>{
          <div className="nav2">
             <div>
              <img src={searchimg} alt="Please wait"/>
-             <input type="text" placeholder="Search for the book you want and read it now... Sherlock Holmes, Harry Pot..."/>
+             <input value={bookinp} onChange={(e)=>setBookinp(e.target.value)} type="text" placeholder="Search for the book you want and read it now... Sherlock Holmes, Harry Pot..."/>
             </div>
-             <button>Search</button>
+             <button onClick={findbooks}>Search</button>
          </div>
          <div className="nav3">
               <img src={bookimg} alt="Please wait"/>
@@ -33,6 +47,7 @@ const Navbar=()=>{
               </div>
              
          </div>
+
        </div>
     )
 }

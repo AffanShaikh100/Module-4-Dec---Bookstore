@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Components/Navbar";
 import Book from "./Components/Book";
-
+import Inputsearch from "./Components/Inputsearch";
 
 const app =()=>{
 
@@ -9,6 +9,7 @@ const app =()=>{
         <div>
              <Navbar/>
              <Book/>
+             <Inputsearch/>
         </div>
              
     )

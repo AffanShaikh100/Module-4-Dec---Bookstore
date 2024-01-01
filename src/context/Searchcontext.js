@@ -4,9 +4,10 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 
 const SearchContext = (props) =>{
-let [test,settest] = useState("")
+let [bookinp,setBookinp] = useState(null)
 let [harrydata,setHarryData] = useState([]);
-let [sherlockdata,setSherlockdata] = useState([])
+let [sherlockdata,setSherlockdata] = useState([]);
+let [filter,setFilter] = useState(false);
 
 useEffect(()=>{
     axios.get("https://www.googleapis.com/books/v1/volumes?q=harry+potter")
@@ -14,7 +15,7 @@ useEffect(()=>{
         response => setHarryData(response.data.items)
     )
     .catch(err=>console.log(err))
-},[test])
+},[])
 
 useEffect(()=>{
     axios.get("https://www.googleapis.com/books/v1/volumes?q=Sherlock+Holmes")
@@ -22,18 +23,20 @@ useEffect(()=>{
         response=>setSherlockdata(response.data.items)
     )
     .catch(err=> console.log(err))
-},[test])
+},[])
 
 
-
-
-    return(
+return(
         <div>
             <globalcontext.Provider value={{
                    harrydata:harrydata,
                    setHarryData:setHarryData,
                    sherlockdata:sherlockdata,
-                   setSherlockdata:setSherlockdata
+                   setSherlockdata:setSherlockdata,
+                   bookinp: bookinp,
+                   setBookinp: setBookinp,
+                   filter:filter,
+                   setFilter:setFilter
             }
             }>
                  {props.children}
